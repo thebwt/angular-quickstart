@@ -7,7 +7,6 @@ import { Hero } from './hero';
 import {Http, Headers} from "@angular/http";
 
 import 'rxjs/add/operator/toPromise';
-import {toPromise} from "rxjs/operator/toPromise";
 
 
 @Injectable()
@@ -35,10 +34,10 @@ export class HeroService {
         return Promise.reject(error.message || error);
     }
 
-    private headers = new Headers({'Content-Type':'application/json'})
+    private headers = new Headers({'Content-Type':'application/json'});
 
     update(hero: Hero): Promise<Hero> {
-        const url = `${this.heroesUrl}/${hero.id}`
+        const url = `${this.heroesUrl}/${hero.id}`;
 
         return this.http
             .put(url, JSON.stringify(hero), {headers: this.headers})
@@ -57,7 +56,7 @@ export class HeroService {
     }
 
     delete(id: number): Promise<void> {
-        const url = `${this.heroesUrl}/$id`;
+        const url = `${this.heroesUrl}/${id}`;
 
         return this.http.delete(url, {headers: this.headers})
             .toPromise()
